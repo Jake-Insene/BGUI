@@ -222,12 +222,12 @@ void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, cons
     }
 }
 
-Slice<UIElementBatch::Batch> UIElementBatch::get_batches()
+Slice<const UIElementBatch::Batch> UIElementBatch::get_batches() const
 {
     return data.batches.slice();
 }
 
-Slice<UIElementBatch::Vertex> UIElementBatch::get_vertices()
+Slice<const UIElementBatch::Vertex> UIElementBatch::get_vertices() const
 {
     return data.vertices.slice();
 }

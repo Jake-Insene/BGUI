@@ -104,8 +104,8 @@ struct UIElementBatch
 
     void draw_text(StringView label, Font* font, f32 font_size, const Vector2& center);
 
-    Slice<Batch> get_batches();
-    Slice<Vertex> get_vertices();
+    Slice<const Batch> get_batches() const;
+    Slice<const Vertex> get_vertices() const;
 
     void _bind_to_batch(GPU::TextureViewID texture_view, ElementFilter filter);
 };

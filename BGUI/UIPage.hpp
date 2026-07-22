@@ -31,7 +31,7 @@ struct UIPage
 
     void batch(Widget* widget);
 
-    void flush_pass(Basic::FrameContext& context, Basic::RenderGraph& graph);
+    const UIElementBatch& get_batcher() const { return data.batcher; }
 };
 
 }
