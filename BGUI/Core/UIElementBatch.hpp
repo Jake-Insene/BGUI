@@ -5,6 +5,7 @@
 #include <math/mat4.h>
 #include <math/rect_2d.h>
 #include <resource/texture.h>
+#include <resource/font.h>
 
 #include <Basic/Core/RenderCore.hpp>
 
@@ -88,14 +89,20 @@ struct UIElementBatch
     void begin(Mat4 projection);
     void end();
 
+    // Draws a textured triangle using the given vertexs, uv must to be in normalized form.
     void draw_triangle_vertex(const Vertex& v1, const Vertex& v2, const Vertex& v3,
         GPU::TextureViewID texture_view, ElementFilter filter);
         
+    // Draws a textured quads using the given vertexs, uv must to be a local rect to the texture.
     void draw_texture_gpu(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
         GPU::TextureViewID texture_view, const Vector2& texture_size, ElementFilter filter);
 
+    // Draws a textured quads using the given vertexs, uv must to be a local rect to the texture.
+    // If texture is nullptr, it will use the default white texture provided by bread.
     void draw_texture(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
         Texture2D* texture, ElementFilter filter);
+
+    void draw_text(StringView label, Font* font, f32 font_size, const Vector2& center);
 
     Slice<Batch> get_batches();
     Slice<Vertex> get_vertices();

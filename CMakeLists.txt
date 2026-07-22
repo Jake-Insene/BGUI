@@ -8,10 +8,14 @@ bread_package(
     INCLUDES
         "."
     SOURCES
-        "BGUI/UIPage.cpp"
-        
         "BGUI/Core/UICore.cpp"
         "BGUI/Core/UIElementBatch.cpp"
+        "BGUI/Core/Widget.cpp"
+        
+        "BGUI/Widgets/Button.cpp"
+        "BGUI/Widgets/Panel.cpp"
+
+        "BGUI/UIPage.cpp"
 )
 
 target_link_libraries(BGUI PUBLIC Basic)

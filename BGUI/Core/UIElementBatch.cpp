@@ -7,6 +7,22 @@
 namespace BGUI
 {
 
+// Internal
+Vector2 _calculate_text_size(Font* font, i32 font_size, StringView label)
+{
+    Vector2 max_size = Vector2();
+
+    const Font::FontTheme& theme = font->get_font_theme(font_size);
+    for(usize i = 0; i < label.len; i++)
+    {
+        Font::Glyph& glyph = theme.glyphs.get(label[i]);
+        max_size.width += glyph.advance.width;
+        max_size.height = Math::max(max_size.height, glyph.advance.height);
+    }
+
+    return max_size;
+}
+
 UIElementBatch::UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat render_attachment_format)
 {
     data.allocator = allocator;
@@ -86,7 +102,7 @@ UIElementBatch::UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat ren
     for(usize i = 0; i < u32(ElementFilter::MaxCount); i++)
     {
         data.samplers[i] = GPU::sampler_create(Engine::get_render_device()->get_device(),
-            GPU::SamplerCreateInfo::create(gpu_filters[0], gpu_filters[0],
+            GPU::SamplerCreateInfo::create(gpu_filters[i], gpu_filters[i],
                 gpu_mimap_modes[i], GPU::SamplerAddressMode::Repeat, GPU::SamplerAddressMode::Repeat,
                 GPU::SamplerAddressMode::Repeat, 0.F, false, 1.F, false, GPU::CompareOp::Always,
                 0.F, 0.F));
@@ -168,8 +184,42 @@ void UIElementBatch::draw_texture_gpu(const Rect2D& rect, const Rect2D& uv_rect,
 void UIElementBatch::draw_texture(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
     Texture2D* texture, ElementFilter filter)
 {
+    if(texture == nullptr)
+    {
+        texture = Resource::load<Texture2D>("default:white_texture");
+    }
+
     GPU::TextureViewID texture_view = Engine::get_render_device()->get_gpu_resource_manager()->texture_get_texture_view(texture->texture_ref);
     draw_texture_gpu(rect, uv_rect, color, texture_view, Vector2(texture->get_size()), filter);
+}
+
+void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, const Vector2& center)
+{
+    DebugAssert(font != nullptr, "invalid font");
+
+    Vector2 text_size = _calculate_text_size(font, font_size, label);
+
+    Rect2D text_rect = Rect2D(Vector2(), text_size);
+    text_rect.set_center(center);
+
+    const Font::FontTheme& theme = font->get_font_theme(font_size);
+
+    f32 width_accum = 0;
+    for(usize i = 0; i < label.len; i++)
+    {
+        Font::Glyph& glyph = theme.glyphs.get(label[i]);
+
+        draw_texture_gpu(
+            Rect2D(text_rect.position + Vector2(width_accum, 0), glyph.advance),
+            glyph.src_rect,
+            Color(255, 255, 255, 255),
+            Engine::get_render_device()->get_gpu_resource_manager()->texture_get_texture_view(theme.font_atlas),
+            theme.atlas_size,
+            ElementFilter::Nearest
+        );
+
+        width_accum += glyph.advance.width;
+    }
 }
 
 Slice<UIElementBatch::Batch> UIElementBatch::get_batches()
