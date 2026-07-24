@@ -67,7 +67,7 @@ void Panel::layout(const Vector2& absolute)
 void Panel::draw(UIElementBatch& batcher)
 {
     batcher.draw_texture(
-        get_global_rect(), Rect2D(0, 0, 1, 1), Color(20, 20, 20, 255),
+        get_global_rect(), Rect2D(0, 0, 1, 1), background_color,
         nullptr, ElementFilter::Nearest);
 
     for(Widget* child : get_children())
