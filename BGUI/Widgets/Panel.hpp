@@ -12,12 +12,16 @@ struct Panel final : Widget
         Vector2 padding = Vector2(5, 5);
     } data;
 
+    Color background_color = Color(20, 20, 20, 255);
+
     Panel(Mem::Allocator* allocator, const Vector2& size);
 
     Rect2D measure() override;
     void layout(const Vector2& absolute) override;
     void draw(UIElementBatch& batcher) override;
     bool event(const Event& event) override;
+
+    void set_padding(const Vector2& new_padding) { data.padding = new_padding; }
 };
 
 }
