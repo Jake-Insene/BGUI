@@ -8,31 +8,6 @@
 namespace BGUI
 {
 
-Widget* hit_test(Widget* widget, const Vector2& point) {
-    if (!widget)
-    {
-        return nullptr;
-    }
-
-    if (!widget->get_global_rect().contains(point))
-    {
-        return nullptr;
-    }
-
-    Slice children = widget->get_children();
-    for (usize i = children.len; i > 0; --i)
-    {
-        Widget* child = children[i - 1];
-        Widget* hit = hit_test(child, point);
-        if (hit)
-        {
-            return hit;
-        }
-    }
-
-    return widget;
-}
-
 Panel::Panel(Mem::Allocator* allocator, const Vector2& size) : Widget(allocator),
 data{}
 {
@@ -54,13 +29,31 @@ void Panel::layout(const Vector2& absolute)
     for(Widget* child : get_children())
     {
         Rect2D child_local_rect = child->get_local_rect();
-        current_position.y -= child_local_rect.size.height;
 
-        Vector2 child_global = get_global_rect().position + current_position;
+        if(data.layout.direction == LayoutDirection::Vertical)
+        {
+            current_position.y -= child_local_rect.size.height;
+            Vector2 child_global = get_global_rect().position + current_position;
+            child->layout(child_global);
+        }
+        else
+        {
+            Vector2 child_global = get_global_rect().position
+            + current_position
+            + Vector2(0, -child_local_rect.size.height);
+            child->layout(child_global);
+            current_position.x += child_local_rect.size.width;
+        }
+        
 
-        child->layout(child_global);
-
-        current_position.y -= data.padding.y;
+        if(data.layout.direction == LayoutDirection::Vertical)
+        {
+            current_position.y -= data.padding.y;
+        }
+        else
+        {
+            current_position.x += data.padding.x;
+        }
     }
 }
 
@@ -87,6 +80,12 @@ bool Panel::event(const Event& event)
     }
 
     return false;
+}
+
+void Panel::set_layout(const Layout& new_layout)
+{
+    data.layout = new_layout;
+    layout(get_global_rect().position);
 }
 
 }

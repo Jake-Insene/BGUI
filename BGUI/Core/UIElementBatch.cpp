@@ -49,6 +49,15 @@ UIElementBatch::UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat ren
         }
     );
 
+    const GPU::ColorBlendAttachmentState color_blend_attachments[] =
+    {
+        GPU::ColorBlendAttachmentState::create(
+            true, GPU::BlendFactor::SrcAlpha, GPU::BlendFactor::OneMinusSrcAlpha, GPU::BlendOp::Add,
+            GPU::BlendFactor::One, GPU::BlendFactor::OneMinusSrcAlpha, GPU::BlendOp::Add,
+            GPU::ColorComponentFlags(0xFF)
+        ),
+    };
+
     { // Sprite
         const GPU::VertexBinding vertex_bindings[] =
         {
@@ -74,6 +83,7 @@ UIElementBatch::UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat ren
                 GPU::RasterizerState::state(GPU::PolygonMode::Fill, GPU::CullMode::Front, GPU::FrontFace::ClockWise),
                 GPU::MultisampleState::disable(),
                 GPU::DepthStencilState::depth_stencil_disable(),
+                GPU::ColorBlendState::create(false, GPU::LogicOp::Copy, color_blend_attachments, Vector4()),
                 data.pipeline_layout, GPU::RenderingInfo::render_attachments(Slice(&render_attachment_format, 1))
             )
         );
