@@ -5,7 +5,6 @@
 #include <Basic/Core/RenderGraph.hpp>
 
 #include "BGUI/Core/Widget.hpp"
-#include "BGUI/Core/UIElementBatch.hpp"
 
 
 struct Texture2D;
@@ -23,15 +22,12 @@ struct UIPage
     struct InternalData
     {
         Mem::Allocator* allocator;
-        UIElementBatch batcher;
     } data;
 
-    UIPage(Mem::Allocator* allocator, GPU::TextureFormat render_attachment_format);
+    UIPage(Mem::Allocator* allocator);
     ~UIPage();
 
-    void batch(Widget* widget);
-
-    const UIElementBatch& get_batcher() const { return data.batcher; }
+    void batch(Widget* widget, UIElementBatch& batcher);
 };
 
 }

@@ -6,14 +6,15 @@
 #include <resource/texture.h>
 #include <resource/font.h>
 
+#include "BGUI/Core/UIElementBatch.hpp"
+
 
 namespace BGUI
 {
 
-UIPage::UIPage(Mem::Allocator* allocator, GPU::TextureFormat render_attachment_format) :
+UIPage::UIPage(Mem::Allocator* allocator) :
 data{
     .allocator = allocator,
-    .batcher = UIElementBatch(allocator, render_attachment_format),
 }
 {
 }
@@ -22,7 +23,7 @@ UIPage::~UIPage()
 {
 }
 
-void UIPage::batch(Widget* widget)
+void UIPage::batch(Widget* widget, UIElementBatch& batcher)
 {
     if (!widget)
     {
@@ -37,9 +38,9 @@ void UIPage::batch(Widget* widget)
     
     Mat4 ortho_projection = Projection::orthographic(0.0f, width, 0.0f, height, -1.0f, 1.0f);
 
-    data.batcher.begin(ortho_projection);
-    widget->draw(data.batcher);
-    data.batcher.end();
+    batcher.begin(ortho_projection);
+    widget->draw(batcher);
+    batcher.end();
 }
 
 }

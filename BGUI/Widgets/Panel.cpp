@@ -24,8 +24,33 @@ void Panel::layout(const Vector2& absolute)
     Widget::data.global_rect.position = absolute;
     Widget::data.global_rect.size = get_local_size();
 
+    // getting max sizes
+    Vector2 content = get_global_rect().size - (data.padding * 2);
+
+    Vector2 group_size = Vector2();
+    for(Widget* child : get_children())
+    {
+        Rect2D child_local_rect = child->get_local_rect();
+
+        if(data.layout.direction == LayoutDirection::Vertical)
+        {
+            group_size.width = Math::max(group_size.width, child_local_rect.size.width);
+            group_size.height += child_local_rect.size.height;
+        }
+    }
+    
+    if(get_children().len != 0 && data.layout.direction == LayoutDirection::Vertical)
+    {
+        group_size.height += (get_children().len - 1) * data.spacing.y;
+    }
+
     // local top left
     Vector2 current_position = Vector2(data.padding.x, get_local_rect().size.height - data.padding.y);
+    if(data.layout.alignment == Alignment::Center)
+    {
+        current_position += Vector2((content.x - group_size.x)/2, -(content.y - group_size.y)/2);
+    }
+    
     for(Widget* child : get_children())
     {
         Rect2D child_local_rect = child->get_local_rect();
@@ -48,11 +73,11 @@ void Panel::layout(const Vector2& absolute)
 
         if(data.layout.direction == LayoutDirection::Vertical)
         {
-            current_position.y -= data.padding.y;
+            current_position.y -= data.spacing.y;
         }
         else
         {
-            current_position.x += data.padding.x;
+            current_position.x += data.spacing.x;
         }
     }
 }
