@@ -19,7 +19,7 @@ struct TextureView : Widget
 
     Rect2D measure() override;
     void layout(const Vector2& absolute) override;
-    void draw(UIElementBatch& batcher) override;
+    void draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info) override;
     bool event(const Event& event) override;
 
     void set_gpu_texture_view(GPU::TextureViewID new_texture_view);

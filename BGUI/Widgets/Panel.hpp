@@ -22,7 +22,7 @@ struct Panel final : Widget
 
     Rect2D measure() override;
     void layout(const Vector2& absolute) override;
-    void draw(UIElementBatch& batcher) override;
+    void draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info) override;
     bool event(const Event& event) override;
 
     void set_padding(const Vector2& new_padding) { data.padding = new_padding; }

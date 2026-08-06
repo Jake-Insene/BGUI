@@ -26,6 +26,7 @@ struct Button : Widget
 
     Color background_color{255, 255, 255, 255};
     Font* font;
+    f32 font_size;
     Function<void(*)(Widget*)> on_click{};
 
     Button(Mem::Allocator* allocator, const Vector2& size);
@@ -33,7 +34,7 @@ struct Button : Widget
 
     Rect2D measure() override;
     void layout(const Vector2& absolute) override;
-    void draw(UIElementBatch& batcher) override;
+    void draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info) override;
     bool event(const Event& event) override;
 
     StringView get_text() const { return data.text.view(); }

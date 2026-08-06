@@ -27,7 +27,7 @@ struct UIPage
     UIPage(Mem::Allocator* allocator);
     ~UIPage();
 
-    void batch(Widget* widget, UIElementBatch& batcher);
+    void batch(Widget* widget, UIElementBatch& batcher, const Basic::FrameInfo& frame_info);
 };
 
 }

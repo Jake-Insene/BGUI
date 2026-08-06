@@ -30,7 +30,7 @@ void TextureView::layout(const Vector2& absolute)
     Widget::data.global_rect.size = get_local_size();
 }
 
-void TextureView::draw(UIElementBatch& batcher)
+void TextureView::draw(UIElementBatch& batcher, const Basic::FrameInfo&)
 {
     if(!data.gpu_texture_view.is_valid())
     {

@@ -82,7 +82,7 @@ void Panel::layout(const Vector2& absolute)
     }
 }
 
-void Panel::draw(UIElementBatch& batcher)
+void Panel::draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info)
 {
     batcher.draw_texture(
         get_global_rect(), Rect2D(0, 0, 1, 1), background_color,
@@ -90,7 +90,7 @@ void Panel::draw(UIElementBatch& batcher)
 
     for(Widget* child : get_children())
     {
-        child->draw(batcher);
+        child->draw(batcher, frame_info);
     }
 }
 

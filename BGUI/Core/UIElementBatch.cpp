@@ -219,15 +219,18 @@ void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, cons
     {
         Font::Glyph& glyph = theme.glyphs.get(label[i]);
 
-        draw_texture_gpu(
-            Rect2D(text_rect.position + Vector2(width_accum, 0), glyph.advance),
-            glyph.src_rect,
-            Color(255, 255, 255, 255),
-            Engine::get_render_device()->get_gpu_resource_manager()->texture_get_texture_view(theme.font_atlas),
-            theme.atlas_size,
-            ElementFilter::Nearest
-        );
-
+        if(label[i] != ' ')
+        {
+            draw_texture_gpu(
+                Rect2D(text_rect.position + Vector2(width_accum, 0), glyph.advance),
+                glyph.src_rect,
+                Color(255, 255, 255, 255),
+                Engine::get_render_device()->get_gpu_resource_manager()->texture_get_texture_view(theme.font_atlas),
+                theme.atlas_size,
+                ElementFilter::Nearest
+            );
+        }
+            
         width_accum += glyph.advance.width;
     }
 }

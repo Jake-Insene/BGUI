@@ -8,6 +8,13 @@
 
 struct Event;
 
+namespace Basic
+{
+
+struct FrameInfo;
+
+};
+
 namespace BGUI
 {
 
@@ -47,7 +54,7 @@ struct Widget
 
     virtual Rect2D measure() = 0; 
     virtual void layout(const Vector2& absolute) = 0;
-    virtual void draw(UIElementBatch& batcher) = 0;
+    virtual void draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info) = 0;
 
     virtual bool event(const Event& event) = 0;
 };

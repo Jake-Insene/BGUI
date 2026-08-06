@@ -15,6 +15,7 @@ bread_package(
         "BGUI/Widgets/Button.cpp"
         "BGUI/Widgets/Panel.cpp"
         "BGUI/Widgets/TextureView.cpp"
+        "BGUI/Widgets/Viewport.cpp"
 
         "BGUI/UIPage.cpp"
 )

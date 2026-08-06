@@ -32,7 +32,7 @@ void Button::layout(const Vector2& absolute)
     Widget::data.global_rect.size = get_local_size();
 }
 
-void Button::draw(UIElementBatch& batcher)
+void Button::draw(UIElementBatch& batcher, const Basic::FrameInfo&)
 {
     Color target_color = background_color;
     if(data.current_state == State::Hovered)
@@ -55,7 +55,7 @@ void Button::draw(UIElementBatch& batcher)
 
     if(font != nullptr)
     {
-        batcher.draw_text(data.text.view(), font, 32, get_global_rect().center());
+        batcher.draw_text(data.text.view(), font, font_size, get_global_rect().center());
     }
 }
 

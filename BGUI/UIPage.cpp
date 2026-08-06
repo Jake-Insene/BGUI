@@ -23,7 +23,7 @@ UIPage::~UIPage()
 {
 }
 
-void UIPage::batch(Widget* widget, UIElementBatch& batcher)
+void UIPage::batch(Widget* widget, UIElementBatch& batcher, const Basic::FrameInfo& frame_info)
 {
     if (!widget)
     {
@@ -39,7 +39,7 @@ void UIPage::batch(Widget* widget, UIElementBatch& batcher)
     Mat4 ortho_projection = Projection::orthographic(0.0f, width, 0.0f, height, -1.0f, 1.0f);
 
     batcher.begin(ortho_projection);
-    widget->draw(batcher);
+    widget->draw(batcher, frame_info);
     batcher.end();
 }
 
