@@ -26,7 +26,7 @@ struct Button : Widget
 
     Color background_color{255, 255, 255, 255};
     Font* font;
-    f32 font_size;
+    f32 font_size = 16;
     Function<void(*)(Widget*)> on_click{};
 
     Button(Mem::Allocator* allocator, const Vector2& size);

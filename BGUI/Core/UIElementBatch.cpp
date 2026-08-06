@@ -206,6 +206,7 @@ void UIElementBatch::draw_texture(const Rect2D& rect, const Rect2D& uv_rect, con
 void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, const Vector2& center)
 {
     DebugAssert(font != nullptr, "invalid font");
+    DebugAssert(font_size != 0, "invalid font size");
 
     Vector2 text_size = _calculate_text_size(font, font_size, label);
 
