@@ -22,8 +22,6 @@ Widget::~Widget()
         DestructObject(*widget);
         data.allocator->free(Slice(reinterpret_cast<u8*>(widget), 1));
     }
-
-    data.children.destroy();
 }
 
 void Widget::set_local_size(const Vector2& new_size)

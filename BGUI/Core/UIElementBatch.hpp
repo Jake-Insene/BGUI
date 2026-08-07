@@ -63,25 +63,22 @@ struct UIElementBatch
         End,
     };
     
-    struct InternalData
-    {
-        Mem::Allocator* allocator;
+    Mem::Allocator* allocator;
 
-        GPU::DescriptorSetLayoutID set_layout;
+    GPU::DescriptorSetLayoutID set_layout;
 
-        GPU::PipelineLayoutID pipeline_layout;
-        GPU::PipelineID pipeline;
+    GPU::PipelineLayoutID pipeline_layout;
+    GPU::PipelineID pipeline;
 
-        Array<Vertex> vertices;
-        Array<Batch> batches;
-        GPU::TextureViewID current_texture_view;
-        ElementFilter current_filter;
+    Array<Vertex> vertices;
+    Array<Batch> batches;
+    GPU::TextureViewID current_texture_view;
+    ElementFilter current_filter;
 
-        BatchBlock block;
-        RecordingState state;
+    BatchBlock block;
+    RecordingState state;
 
-        GPU::SamplerID samplers[u32(ElementFilter::MaxCount)];
-    } data;
+    GPU::SamplerID samplers[u32(ElementFilter::MaxCount)];
     
     UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat render_attachment_format);
     ~UIElementBatch();

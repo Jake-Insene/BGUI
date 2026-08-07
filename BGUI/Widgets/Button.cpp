@@ -17,9 +17,7 @@ data{.current_state = State::Normal, .text = String::with_allocator(allocator), 
 }
 
 Button::~Button()
-{
-    data.text.destroy();
-}
+{}
 
 Rect2D Button::measure()
 {
