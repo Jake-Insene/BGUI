@@ -29,7 +29,7 @@ struct Button : Widget
     f32 font_size = 16;
     Function<void(*)(Widget*)> on_click{};
 
-    Button(Mem::Allocator* allocator, const Vector2& size);
+    Button(Mem::Allocator& allocator, const Vector2& size);
     ~Button();
 
     Rect2D measure() override;

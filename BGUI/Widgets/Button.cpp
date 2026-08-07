@@ -10,7 +10,7 @@
 namespace BGUI
 {
 
-Button::Button(Mem::Allocator* allocator, const Vector2& size) : Widget(allocator),
+Button::Button(Mem::Allocator& allocator, const Vector2& size) : Widget(allocator),
 data{.current_state = State::Normal, .text = String::with_allocator(allocator), }
 {
     set_local_size(size);

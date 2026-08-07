@@ -25,7 +25,7 @@ struct Viewport : Widget
 
     Function<void(*)(Viewport*, const ViewportMouseButton&)> on_mouse_button{};
 
-    Viewport(Mem::Allocator* allocator, const Vector2& size, GPU::TextureFormat render_target_format);
+    Viewport(Mem::Allocator& allocator, const Vector2& size, GPU::TextureFormat render_target_format);
     ~Viewport();
 
     Rect2D measure() override;

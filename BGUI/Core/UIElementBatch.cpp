@@ -23,7 +23,7 @@ Vector2 _calculate_text_size(Font* font, i32 font_size, StringView label)
     return max_size;
 }
 
-UIElementBatch::UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat render_attachment_format)
+UIElementBatch::UIElementBatch(Mem::Allocator& allocator, GPU::TextureFormat render_attachment_format)
 : allocator(allocator), vertices(allocator, 4, {}), batches(allocator, 4, {}),
 current_texture_view(GPU::TextureViewID::invalid()), current_filter(ElementFilter::MaxCount),
 state(RecordingState::End)

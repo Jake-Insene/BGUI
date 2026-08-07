@@ -27,7 +27,7 @@ struct Widget
 
     struct InternalData
     {
-        Mem::Allocator* allocator;
+        Mem::Allocator& allocator;
 
         Widget* parent;
         Array<Widget*> children;
@@ -36,7 +36,7 @@ struct Widget
         Rect2D global_rect;
     } data;
 
-    Widget(Mem::Allocator* allocator);
+    Widget(Mem::Allocator& allocator);
     virtual ~Widget();
 
     Rect2D get_local_rect() const { return data.local_rect; }
@@ -47,7 +47,7 @@ struct Widget
     template<typename T, typename... TArgs>
     T* add_node(TArgs&&... args)
     {
-        return static_cast<T*>(data.children.add(data.allocator->object<T>(Forward<TArgs>(args)...)));
+        return static_cast<T*>(data.children.add(data.allocator.object<T>(Forward<TArgs>(args)...)));
     }
 
     Slice<Widget*> get_children() { return data.children.slice(); }

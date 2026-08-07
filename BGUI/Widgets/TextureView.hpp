@@ -14,7 +14,7 @@ struct TextureView : Widget
         GPU::TextureViewID gpu_texture_view;
     } data;
 
-    TextureView(Mem::Allocator* allocator, const Vector2& size);
+    TextureView(Mem::Allocator& allocator, const Vector2& size);
     ~TextureView();
 
     Rect2D measure() override;

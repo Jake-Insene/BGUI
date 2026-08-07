@@ -63,7 +63,7 @@ struct UIElementBatch
         End,
     };
     
-    Mem::Allocator* allocator;
+    Mem::Allocator& allocator;
 
     GPU::DescriptorSetLayoutID set_layout;
 
@@ -80,7 +80,7 @@ struct UIElementBatch
 
     GPU::SamplerID samplers[u32(ElementFilter::MaxCount)];
     
-    UIElementBatch(Mem::Allocator* allocator, GPU::TextureFormat render_attachment_format);
+    UIElementBatch(Mem::Allocator& allocator, GPU::TextureFormat render_attachment_format);
     ~UIElementBatch();
 
     void begin(Mat4 projection);

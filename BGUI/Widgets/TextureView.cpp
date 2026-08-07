@@ -10,7 +10,7 @@
 namespace BGUI
 {
 
-TextureView::TextureView(Mem::Allocator* allocator, const Vector2& size) : Widget(allocator)
+TextureView::TextureView(Mem::Allocator& allocator, const Vector2& size) : Widget(allocator)
 {
     set_local_size(size);
 }

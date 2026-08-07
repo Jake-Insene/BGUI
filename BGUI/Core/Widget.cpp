@@ -4,7 +4,7 @@
 namespace BGUI
 {
 
-Widget::Widget(Mem::Allocator* allocator) :
+Widget::Widget(Mem::Allocator& allocator) :
 data{
     .allocator = allocator,
     .parent = nullptr,
@@ -20,7 +20,7 @@ Widget::~Widget()
     for(Widget* widget : data.children.iter())
     {
         DestructObject(*widget);
-        data.allocator->free(Slice(reinterpret_cast<u8*>(widget), 1));
+        data.allocator.free(Slice(reinterpret_cast<u8*>(widget), 1));
     }
 }
 

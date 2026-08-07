@@ -8,7 +8,7 @@
 namespace BGUI
 {
 
-Panel::Panel(Mem::Allocator* allocator, const Vector2& size) : Widget(allocator),
+Panel::Panel(Mem::Allocator& allocator, const Vector2& size) : Widget(allocator),
 data{}
 {
     set_local_size(size);

@@ -18,7 +18,7 @@ struct Panel final : Widget
 
     Color background_color = Color(20, 20, 20, 255);
 
-    Panel(Mem::Allocator* allocator, const Vector2& size);
+    Panel(Mem::Allocator& allocator, const Vector2& size);
 
     Rect2D measure() override;
     void layout(const Vector2& absolute) override;

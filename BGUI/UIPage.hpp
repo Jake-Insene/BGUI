@@ -21,10 +21,10 @@ struct UIPage
 
     struct InternalData
     {
-        Mem::Allocator* allocator;
+        Mem::Allocator& allocator;
     } data;
 
-    UIPage(Mem::Allocator* allocator);
+    UIPage(Mem::Allocator& allocator);
     ~UIPage();
 
     void batch(Widget* widget, UIElementBatch& batcher, const Basic::FrameInfo& frame_info);

@@ -12,7 +12,7 @@
 namespace BGUI
 {
 
-UIPage::UIPage(Mem::Allocator* allocator) :
+UIPage::UIPage(Mem::Allocator& allocator) :
 data{
     .allocator = allocator,
 }

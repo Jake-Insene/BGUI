@@ -8,7 +8,7 @@
 namespace BGUI
 {
 
-Viewport::Viewport(Mem::Allocator* allocator, const Vector2& size,
+Viewport::Viewport(Mem::Allocator& allocator, const Vector2& size,
     GPU::TextureFormat render_target_format)
 : Widget(allocator),
 data{ .render_target = Basic::RenderTarget(render_target_format, Vector2I(size)) }
