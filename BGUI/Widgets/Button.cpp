@@ -51,10 +51,15 @@ void Button::draw(UIElementBatch& batcher, const Basic::FrameInfo&)
         target_color, nullptr, ElementFilter::Nearest
     );
 
-    if(font != nullptr)
+    if(font == nullptr)
     {
-        batcher.draw_text(data.text.view(), font, font_size, get_global_rect().center());
+        return;
     }
+
+    batcher.draw_text(
+        data.text.view(), font, font_size,
+        get_global_rect().center(), Color(255, 255, 255, 255)
+    );
 }
 
 bool Button::event(const Event& event)

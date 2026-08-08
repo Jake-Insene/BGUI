@@ -13,6 +13,7 @@ bread_package(
         "BGUI/Core/Widget.cpp"
         
         "BGUI/Widgets/Button.cpp"
+        "BGUI/Widgets/Label.cpp"
         "BGUI/Widgets/Panel.cpp"
         "BGUI/Widgets/TextureView.cpp"
         "BGUI/Widgets/Viewport.cpp"

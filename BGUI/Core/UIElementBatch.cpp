@@ -193,7 +193,8 @@ void UIElementBatch::draw_texture(const Rect2D& rect, const Rect2D& uv_rect, con
     draw_texture_gpu(rect, uv_rect, color, texture_view, Vector2(texture->get_size()), filter);
 }
 
-void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, const Vector2& center)
+void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, const Vector2& center,
+    const Color& color)
 {
     DebugAssert(font != nullptr, "invalid font");
     DebugAssert(font_size != 0, "invalid font size");
@@ -215,7 +216,7 @@ void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, cons
             draw_texture_gpu(
                 Rect2D(text_rect.position + Vector2(width_accum, 0), glyph.advance),
                 glyph.src_rect,
-                Color(255, 255, 255, 255),
+                color,
                 Engine::get_gpu_resource_manager()->texture_get_texture_view(theme.font_atlas),
                 theme.atlas_size,
                 ElementFilter::Nearest

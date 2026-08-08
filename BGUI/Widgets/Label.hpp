@@ -9,18 +9,10 @@ struct Font;
 namespace BGUI
 {
 
-struct Button : Widget
+struct Label : Widget
 {
-    enum class State
-    {
-        Normal,
-        Hovered,
-        Pressed,
-    };
-
     struct InternalData
     {
-        State current_state;
         String text;
     } data;
 
@@ -29,16 +21,15 @@ struct Button : Widget
     f32 font_size = 16;
     Function<void(*)(Widget*)> on_click{};
 
-    Button(Mem::Allocator& allocator, const Vector2& size);
-    ~Button();
+    Label(Mem::Allocator& allocator, const Vector2& size);
+    ~Label();
 
     Rect2D measure() override;
     void layout(const Vector2& absolute) override;
     void draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info) override;
     bool event(const Event& event) override;
 
-    StringView get_text() const { return data.text.view(); }
-    void set_text(StringView view);
+    String& get_text() { return data.text; }
 };
 
 }

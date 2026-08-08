@@ -45,9 +45,9 @@ struct Widget
     void set_local_size(const Vector2& new_size);
 
     template<typename T, typename... TArgs>
-    T* add_node(TArgs&&... args)
+    T& add_node(TArgs&&... args)
     {
-        return static_cast<T*>(data.children.add(data.allocator.object<T>(Core::Forward<TArgs>(args)...)));
+        return *static_cast<T*>(data.children.add(data.allocator.object<T>(Core::Forward<TArgs>(args)...)));
     }
 
     Slice<Widget*> get_children() { return data.children.slice(); }
