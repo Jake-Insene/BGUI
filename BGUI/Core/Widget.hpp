@@ -47,7 +47,7 @@ struct Widget
     template<typename T, typename... TArgs>
     T* add_node(TArgs&&... args)
     {
-        return static_cast<T*>(data.children.add(data.allocator.object<T>(Forward<TArgs>(args)...)));
+        return static_cast<T*>(data.children.add(data.allocator.object<T>(Core::Forward<TArgs>(args)...)));
     }
 
     Slice<Widget*> get_children() { return data.children.slice(); }
