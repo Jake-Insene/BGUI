@@ -71,9 +71,19 @@ state(RecordingState::End)
             GPU::VertexAttribute::create(1, 0, GPU::VertexFormat::RGBA32Float, sizeof(Vector4)),
         };
 
+        const GPU::DescriptorSetLayoutID pipeline_set_layouts[] =
+        {
+            set_layout
+        };
+
         pipeline_layout = GPU::pipeline_layout_create(Engine::get_render_device()->get_device(),
-            GPU::PipelineLayoutCreateInfo::create(blocks, Slice(&set_layout, 1))
+            GPU::PipelineLayoutCreateInfo::create(blocks, pipeline_set_layouts)
         );
+
+        const GPU::TextureFormat pipeline_render_attachments[] =
+        {
+            render_attachment_format,
+        };
 
         pipeline = GPU::pipeline_create(Engine::get_render_device()->get_device(),
             GPU::PipelineCreateInfo::create(
@@ -85,7 +95,7 @@ state(RecordingState::End)
                 GPU::MultisampleState::disable(),
                 GPU::DepthStencilState::depth_stencil_disable(),
                 GPU::ColorBlendState::create(false, GPU::LogicOp::Copy, color_blend_attachments, Vector4()),
-                pipeline_layout, GPU::RenderingInfo::render_attachments(Slice(&render_attachment_format, 1))
+                pipeline_layout, GPU::RenderingInfo::render_attachments(pipeline_render_attachments)
             )
         );
     }
@@ -229,12 +239,12 @@ void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, cons
 
 Slice<const UIElementBatch::Batch> UIElementBatch::get_batches() const
 {
-    return batches.slice();
+    return batches.slice().as_const();
 }
 
 Slice<const UIElementBatch::Vertex> UIElementBatch::get_vertices() const
 {
-    return vertices.slice();
+    return vertices.slice().as_const();
 }
 
 void UIElementBatch::_bind_to_batch(GPU::TextureViewID texture_view, ElementFilter filter)
