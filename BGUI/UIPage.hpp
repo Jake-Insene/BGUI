@@ -1,5 +1,5 @@
 #pragma once
-#include <collections/string_map.h>
+#include <Collections/StringMap.hpp>
 
 #include <Basic/Core/RenderCore.hpp>
 #include <Basic/Core/RenderGraph.hpp>

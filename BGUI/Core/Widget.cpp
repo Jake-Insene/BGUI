@@ -8,7 +8,7 @@ Widget::Widget(Mem::Allocator& allocator) :
 data{
     .allocator = allocator,
     .parent = nullptr,
-    .children = Array<Widget*>::with_allocator(allocator),
+    .children = Collections::Array<Widget*>(allocator, 0, {}),
     .local_rect = {},
     .global_rect = {},
 }

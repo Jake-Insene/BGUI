@@ -1,5 +1,5 @@
 #pragma once
-#include <collections/array.h>
+#include <Collections/Array.hpp>
 #include <math/color.h>
 #include <math/vec2.h>
 #include <math/vec4.h>
@@ -30,7 +30,7 @@ struct Widget
         Mem::Allocator& allocator;
 
         Widget* parent;
-        Array<Widget*> children;
+        Collections::Array<Widget*> children;
 
         Rect2D local_rect;
         Rect2D global_rect;

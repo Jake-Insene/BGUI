@@ -1,5 +1,5 @@
 #pragma once
-#include <collections/function.h>
+#include <Collections/Function.hpp>
 #include <input/input.h>
 #include <Basic/Core/RenderTarget.hpp>
 

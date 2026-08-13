@@ -1,6 +1,6 @@
 #pragma once
-#include <collections/function.h>
-#include <collections/string.h>
+#include <Collections/Function.hpp>
+#include <Collections/String.hpp>
 #include "BGUI/Core/Widget.hpp"
 
 
