@@ -8,7 +8,7 @@ namespace BGUI
 {
 
 // Internal
-Vector2 _calculate_text_size(Font* font, i32 font_size, StringView label)
+Vector2 _calculate_text_size(Font* font, i32 font_size, Collections::StringView label)
 {
     Vector2 max_size = Vector2();
 
@@ -203,7 +203,7 @@ void UIElementBatch::draw_texture(const Rect2D& rect, const Rect2D& uv_rect, con
     draw_texture_gpu(rect, uv_rect, color, texture_view, Vector2(texture->get_size()), filter);
 }
 
-void UIElementBatch::draw_text(StringView label, Font* font, f32 font_size, const Vector2& center,
+void UIElementBatch::draw_text(Collections::StringView label, Font* font, f32 font_size, const Vector2& center,
     const Color& color)
 {
     DebugAssert(font != nullptr, "invalid font");

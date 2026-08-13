@@ -23,7 +23,7 @@ struct Viewport : Widget
         Basic::RenderTarget render_target;
     } data;
 
-    Function<void(*)(Viewport*, const ViewportMouseButton&)> on_mouse_button{};
+    Collections::Function<void(*)(Viewport*, const ViewportMouseButton&)> on_mouse_button{};
 
     Viewport(Mem::Allocator& allocator, const Vector2& size, GPU::TextureFormat render_target_format);
     ~Viewport();

@@ -13,13 +13,13 @@ struct Label : Widget
 {
     struct InternalData
     {
-        String text;
+        Collections::String text;
     } data;
 
     Color background_color{255, 255, 255, 255};
     Font* font = nullptr;
     f32 font_size = 16;
-    Function<void(*)(Widget*)> on_click{};
+    Collections::Function<void(*)(Widget*)> on_click{};
 
     Label(Mem::Allocator& allocator, const Vector2& size);
     ~Label();
@@ -29,7 +29,7 @@ struct Label : Widget
     void draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info) override;
     bool event(const Event& event) override;
 
-    String& get_text() { return data.text; }
+    Collections::String& get_text() { return data.text; }
 };
 
 }

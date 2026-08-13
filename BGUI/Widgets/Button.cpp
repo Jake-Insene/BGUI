@@ -11,7 +11,7 @@ namespace BGUI
 {
 
 Button::Button(Mem::Allocator& allocator, const Vector2& size) : Widget(allocator),
-data{.current_state = State::Normal, .text = String::with_allocator(allocator), }
+data{.current_state = State::Normal, .text = Collections::String(allocator, 0, {}), }
 {
     set_local_size(size);
 }
@@ -112,7 +112,7 @@ bool Button::event(const Event& event)
     return false;
 }
 
-void Button::set_text(StringView view)
+void Button::set_text(Collections::StringView view)
 {
     data.text.set(view);
 }

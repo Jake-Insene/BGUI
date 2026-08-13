@@ -7,7 +7,7 @@ namespace BGUI
 {
 
 Label::Label(Mem::Allocator& allocator, const Vector2& size) : Widget(allocator),
-data{.text = String::with_allocator(allocator), }
+data{.text = Collections::String(allocator, 0, {}), }
 {
     set_local_size(size);
 }

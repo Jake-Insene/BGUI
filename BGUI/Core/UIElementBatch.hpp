@@ -99,7 +99,8 @@ struct UIElementBatch
     void draw_texture(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
         Texture2D* texture, ElementFilter filter);
 
-    void draw_text(StringView label, Font* font, f32 font_size, const Vector2& center, const Color& color);
+    void draw_text(Collections::StringView label, Font* font, f32 font_size, const Vector2& center,
+        const Color& color);
 
     Slice<const Batch> get_batches() const;
     Slice<const Vertex> get_vertices() const;
