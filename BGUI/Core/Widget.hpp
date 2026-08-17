@@ -10,9 +10,7 @@ struct Event;
 
 namespace Basic
 {
-
 struct FrameInfo;
-
 };
 
 namespace BGUI

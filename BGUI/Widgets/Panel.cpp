@@ -84,10 +84,9 @@ void Panel::layout(const Vector2& absolute)
 
 void Panel::draw(UIElementBatch& batcher, const Basic::FrameInfo& frame_info)
 {
-    
-    //batcher.draw_texture_gpu(
-    //    get_global_rect(), Rect2D(0, 0, 1, 1), background_color,
-    //    nullptr, ElementFilter::Nearest);
+    batcher.draw_texture_gpu(
+        get_global_rect(), Rect2D(0, 0, 1, 1), background_color,
+        batcher.get_white_texture(), Vector2(1, 1), ElementFilter::Nearest);
 
     for(Widget* child : get_children())
     {

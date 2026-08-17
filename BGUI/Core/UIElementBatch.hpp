@@ -7,8 +7,7 @@
 
 #include <Basic/Core/RenderCore.hpp>
 #include <Basic/Core/RenderDevice.hpp>
-#include <Basic/Resource/texture.h>
-#include <Basic/Resource/font.h>
+#include <Basic/Resource/Font.hpp>
 
 
 namespace BGUI
@@ -65,6 +64,7 @@ struct UIElementBatch
     };
     
     Mem::Allocator& allocator;
+    GPU::TextureViewID white_texture;
 
     GPU::DescriptorSetLayoutID set_layout;
 
@@ -81,8 +81,11 @@ struct UIElementBatch
 
     GPU::SamplerID samplers[u32(ElementFilter::MaxCount)];
     
-    UIElementBatch(Mem::Allocator& allocator, Basic::RenderDevice& render_device, GPU::TextureFormat render_attachment_format);
+    UIElementBatch(Mem::Allocator& allocator, Basic::RenderDevice& render_device,
+        GPU::TextureViewID white_texture, GPU::TextureFormat render_attachment_format);
     ~UIElementBatch();
+
+    GPU::TextureViewID get_white_texture() { return white_texture; }
 
     void begin(Mat4 projection);
     void end();
