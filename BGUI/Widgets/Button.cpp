@@ -2,7 +2,7 @@
 
 #include <input/input.h>
 #include <math/vec2.h>
-#include <resource/font.h>
+#include <Basic/Resource/font.h>
 
 #include "BGUI/Core/UIElementBatch.hpp"
 
@@ -46,10 +46,10 @@ void Button::draw(UIElementBatch& batcher, const Basic::FrameInfo&)
         target_color.b *= 0.5;
     }
 
-    batcher.draw_texture(
-        get_global_rect(), Rect2D(0, 0, 1, 1),
-        target_color, nullptr, ElementFilter::Nearest
-    );
+    //batcher.draw_texture_gpu(
+    //    get_global_rect(), Rect2D(0, 0, 1, 1),
+    //    target_color, nullptr, ElementFilter::Nearest
+    //);
 
     if(font == nullptr)
     {

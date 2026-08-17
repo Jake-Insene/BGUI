@@ -1,10 +1,7 @@
 #include "BGUI/UIPage.hpp"
 
-#include <engine/engine.h>
 #include <input/input.h>
 #include <math/projection.h>
-#include <resource/texture.h>
-#include <resource/font.h>
 
 #include "BGUI/Core/UIElementBatch.hpp"
 

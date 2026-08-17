@@ -4,10 +4,11 @@
 #include <math/vec2.h>
 #include <math/mat4.h>
 #include <math/rect_2d.h>
-#include <resource/texture.h>
-#include <resource/font.h>
 
 #include <Basic/Core/RenderCore.hpp>
+#include <Basic/Core/RenderDevice.hpp>
+#include <Basic/Resource/texture.h>
+#include <Basic/Resource/font.h>
 
 
 namespace BGUI
@@ -80,7 +81,7 @@ struct UIElementBatch
 
     GPU::SamplerID samplers[u32(ElementFilter::MaxCount)];
     
-    UIElementBatch(Mem::Allocator& allocator, GPU::TextureFormat render_attachment_format);
+    UIElementBatch(Mem::Allocator& allocator, Basic::RenderDevice& render_device, GPU::TextureFormat render_attachment_format);
     ~UIElementBatch();
 
     void begin(Mat4 projection);
@@ -93,11 +94,6 @@ struct UIElementBatch
     // Draws a textured quads using the given vertexs, uv must to be a local rect to the texture.
     void draw_texture_gpu(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
         GPU::TextureViewID texture_view, const Vector2& texture_size, ElementFilter filter);
-
-    // Draws a textured quads using the given vertexs, uv must to be a local rect to the texture.
-    // If texture is nullptr, it will use the default white texture provided by bread.
-    void draw_texture(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
-        Texture2D* texture, ElementFilter filter);
 
     void draw_text(Collections::StringView label, Font* font, f32 font_size, const Vector2& center,
         const Color& color);

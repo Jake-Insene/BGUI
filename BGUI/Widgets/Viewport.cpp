@@ -8,10 +8,10 @@
 namespace BGUI
 {
 
-Viewport::Viewport(Mem::Allocator& allocator, const Vector2& size,
+Viewport::Viewport(Mem::Allocator& allocator, Basic::RenderDevice& render_device, const Vector2& size,
     GPU::TextureFormat render_target_format)
 : Widget(allocator),
-data{ .render_target = Basic::RenderTarget(render_target_format, Vector2I(size)) }
+data{ .render_target = Basic::RenderTarget(render_device, render_target_format, Vector2I(size)) }
 {
     set_local_size(size);
 }

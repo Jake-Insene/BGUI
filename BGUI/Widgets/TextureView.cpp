@@ -2,8 +2,8 @@
 
 #include <input/input.h>
 #include <math/vec2.h>
-#include <resource/font.h>
 
+#include <Basic/Resource/font.h>
 #include "BGUI/Core/UIElementBatch.hpp"
 
 
