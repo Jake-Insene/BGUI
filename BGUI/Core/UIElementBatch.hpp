@@ -98,7 +98,7 @@ struct UIElementBatch
     void draw_texture_gpu(const Rect2D& rect, const Rect2D& uv_rect, const Color& color,
         GPU::TextureViewID texture_view, const Vector2& texture_size, ElementFilter filter);
 
-    void draw_text(Collections::StringView label, Font* font, f32 font_size, const Vector2& center,
+    void draw_text(Collections::StringView label, Basic::Font* font, f32 font_size, const Vector2& center,
         const Color& color);
 
     Slice<const Batch> get_batches() const;

@@ -4,7 +4,10 @@
 #include "BGUI/Core/Widget.hpp"
 
 
+namespace Basic
+{
 struct Font;
+}
 
 namespace BGUI
 {
@@ -17,7 +20,7 @@ struct Label : Widget
     } data;
 
     Color background_color{255, 255, 255, 255};
-    Font* font = nullptr;
+    Basic::Font* font = nullptr;
     f32 font_size = 16;
     Collections::Function<void(*)(Widget*)> on_click{};
 

@@ -7,14 +7,14 @@ namespace BGUI
 {
 
 // Internal
-Vector2 _calculate_text_size(Font* font, i32 font_size, Collections::StringView label)
+Vector2 _calculate_text_size(Basic::Font* font, i32 font_size, Collections::StringView label)
 {
     Vector2 max_size = Vector2();
 
-    const Font::FontTheme& theme = font->get_font_theme(font_size);
+    const Basic::Font::FontTheme& theme = font->get_font_theme(font_size);
     for(usize i = 0; i < label.len; i++)
     {
-        Font::Glyph& glyph = theme.glyphs.get(label[i]);
+        Basic::Font::Glyph& glyph = theme.glyphs.get(label[i]);
         max_size.width += glyph.advance.width;
         max_size.height = Math::max(max_size.height, glyph.advance.height);
     }
@@ -191,7 +191,7 @@ void UIElementBatch::draw_texture_gpu(const Rect2D& rect, const Rect2D& uv_rect,
     );
 }
 
-void UIElementBatch::draw_text(Collections::StringView label, Font* font, f32 font_size, const Vector2& center,
+void UIElementBatch::draw_text(Collections::StringView label, Basic::Font* font, f32 font_size, const Vector2& center,
     const Color& color)
 {
     DebugAssert(font != nullptr, "invalid font");
@@ -202,12 +202,12 @@ void UIElementBatch::draw_text(Collections::StringView label, Font* font, f32 fo
     Rect2D text_rect = Rect2D(Vector2(), text_size);
     text_rect.set_center(center);
 
-    const Font::FontTheme& theme = font->get_font_theme(font_size);
+    const Basic::Font::FontTheme& theme = font->get_font_theme(font_size);
 
     f32 width_accum = 0;
     for(usize i = 0; i < label.len; i++)
     {
-        Font::Glyph& glyph = theme.glyphs.get(label[i]);
+        Basic::Font::Glyph& glyph = theme.glyphs.get(label[i]);
 
         if(label[i] != ' ')
         {

@@ -7,7 +7,6 @@
 #include "BGUI/Core/Widget.hpp"
 
 
-struct Texture2D;
 
 namespace BGUI
 {
