@@ -1,7 +1,7 @@
 #include "BGUI/UIPage.hpp"
 
 #include <input/input.h>
-#include <math/projection.h>
+#include <Math/projection.h>
 
 #include "BGUI/Core/UIElementBatch.hpp"
 

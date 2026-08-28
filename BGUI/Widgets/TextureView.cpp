@@ -1,7 +1,7 @@
 #include "BGUI/Widgets/TextureView.hpp"
 
 #include <input/input.h>
-#include <math/vec2.h>
+#include <Math/vec2.h>
 
 #include <Basic/Resource/Font.hpp>
 #include "BGUI/Core/UIElementBatch.hpp"

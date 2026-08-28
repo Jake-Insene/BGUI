@@ -1,8 +1,8 @@
 #pragma once
-#include <math/color.h>
-#include <math/vec2.h>
-#include <math/vec4.h>
-#include <math/rect_2d.h>
+#include <Math/color.h>
+#include <Math/vec2.h>
+#include <Math/vec4.h>
+#include <Math/rect_2d.h>
 
 
 

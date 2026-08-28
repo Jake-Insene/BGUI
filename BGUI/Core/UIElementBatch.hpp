@@ -1,9 +1,9 @@
 #pragma once
 #include <Collections/Array.hpp>
-#include <math/color.h>
-#include <math/vec2.h>
-#include <math/mat4.h>
-#include <math/rect_2d.h>
+#include <Math/color.h>
+#include <Math/vec2.h>
+#include <Math/mat4.h>
+#include <Math/rect_2d.h>
 
 #include <Basic/Core/RenderCore.hpp>
 #include <Basic/Core/RenderDevice.hpp>
